@@ -19,7 +19,10 @@ namespace BlogEngine.Gist
 
         void Post_Serving(object sender, ServingEventArgs e)
         {
+            // [gist id=1234]
             e.Body = Regex.Replace(e.Body, "\\[gist\\s[^\\]]*id=(\\d+)[^\\]]*\\]","<script src=\"https://gist.github.com/$1.js\"></script>");
+            // [gist]1234[/gist]
+            e.Body = Regex.Replace(e.Body, "\\[gist\\](\\d+)\\[\\/gist\\]", "<script src=\"https://gist.github.com/$1.js\"></script>");
         }
     }
 }

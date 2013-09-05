@@ -23,6 +23,8 @@ namespace BlogEngine.Gist
             e.Body = Regex.Replace(e.Body, "\\[gist\\s[^\\]]*id=(\\d+)[^\\]]*\\]","<script src=\"https://gist.github.com/$1.js\"></script>");
             // [gist]1234[/gist]
             e.Body = Regex.Replace(e.Body, "\\[gist\\](\\d+)\\[\\/gist\\]", "<script src=\"https://gist.github.com/$1.js\"></script>");
+            e.Body = Regex.Replace(e.Body, "(\\n|<(br|p)\\s*/?>)\\s*https://gist\\.github\\.com/(\\w+/)?(\\d+)/?\\s*(\\n|<(br|p)\\s*/?>|</p>|</li>)", "<script src=\"https://gist.github.com/$4.js\"></script>");
+            e.Body = Regex.Replace(e.Body, "\\[gist\\s+https://gist\\.github\\.com/(\\w+/)?(\\d+)/?\\s*\\]", "<script src=\"https://gist.github.com/$2.js\"></script>");
         }
     }
 }
